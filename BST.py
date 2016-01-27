@@ -12,3 +12,6 @@ class BST(object):
         if self.root is None:
             newNode = Node(Node.val)
         elif self.Node._val > self.Node.    
+		
+		
+	//Some comments dude lets hangout
