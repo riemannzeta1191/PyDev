@@ -1,4 +1,4 @@
-import threading
+import threading, math
 from multiprocessing import Process
 
 
@@ -18,14 +18,14 @@ from multiprocessing import Process
 #                            it's not a feature for the end user's routine use.
 
 def non_threaded():
-    return catalan_number(100)
+    return prime_range(1,100)
 
 def threaded():
-    t1  = threading.Thread(name="threaded-1",target=catalan_num_range,args=(1,20))
-    t2  = threading.Thread(name="threaded-2",target=catalan_num_range,args=(21,40))
-    t3  = threading.Thread(name="threaded-3",target=catalan_num_range,args=(41,60))
-    t4  = threading.Thread(name="threaded-4",target=catalan_num_range,args=(61,80))
-    t5  = threading.Thread(name="threaded-5",target=catalan_num_range,args=(81,100))
+    t1  = threading.Thread(name="threaded-1",target=prime_range,args=(1,20))
+    t2  = threading.Thread(name="threaded-2",target=prime_range,args=(21,40))
+    t3  = threading.Thread(name="threaded-3",target=prime_range,args=(41,60))
+    t4  = threading.Thread(name="threaded-4",target=prime_range,args=(61,80))
+    t5  = threading.Thread(name="threaded-5",target=prime_range,args=(81,100))
     t1.start()
     t2.start()
     t3.start()
@@ -70,6 +70,25 @@ def catalan_num_range(m,n):
     k = (n-m)
     for i in range(k):
         print catalan_number(i),
+
+
+
+def is_prime(n):
+    if n>2 and n%2==0:
+        return False
+    for i in range(3, int(math.sqrt(n)+1)):
+        if n % i == 0:
+            return False
+        return True
+
+def prime_range(m,n):
+    k = n-m
+    l = []
+    for i in range(k):
+        if is_prime(i):
+            l.append(i)
+
+
 
 
 
